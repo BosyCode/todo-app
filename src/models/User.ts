@@ -15,4 +15,4 @@ const UserSchema: Schema<IUser> = new Schema({
   createdAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 
-export default mongoose.model<IUser>("User", UserSchema);
+export default mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "mongoose": "^8.12.1",
     "next": "15.2.2",
     "react": "^19.0.0",
