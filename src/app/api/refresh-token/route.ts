@@ -13,17 +13,14 @@ export async function POST(req: Request) {
   }
 
   try {
-    const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET!) as any;
-    console.log(
-      decoded
-    )
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET!);
     const user = await User.findOne({ refreshToken });
 
     if(!user) {
       return NextResponse.json({message: "Invalid refresh token"}, {status: 403})
     }
 
-    const accessToken = jwt.sign(
+    const accessToken: string = jwt.sign(
       {username: user.username},
       process.env.JWT_SECRET!,
       {expiresIn: '15m'}
