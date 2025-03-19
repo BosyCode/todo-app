@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const response = NextResponse.json({token});
     response.headers.append('Set-Cookie', `${refreshToken}; HttpOnly; Path=/ Max-Age=604800`);
     return response;
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Internal server error" }, {status: 500})
   }
 }

@@ -8,7 +8,7 @@ export async function GET() {
     await connectToDatabase()
     const tasks = await Task.find({})
     return NextResponse.json(tasks)
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Internal server error"}, {status: 500})
   }
 }
