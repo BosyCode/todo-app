@@ -1,13 +1,13 @@
 import jwt from "jsonwebtoken";
 
-export function verifyToken(req: Request, res: Response) {
-  const authHeader = req.headers.get('authorization');
-  if (!authHeader) return null;
-
-  const token = authHeader.split(' ')[1];
+export function verifyToken(token: string) {
   try {
-    return jwt.verify(token, process.env.JWT_SECRET!);
-  } catch {
-    return null
+    const secret = process.env.JWT_SECRET;
+    if (!secret) throw new Error("JWT_SECRET is missing!");
+
+    return jwt.verify(token, secret);
+  } catch (error) {
+    console.error("🚨 Błąd verifyToken:", error);
+    return null;
   }
 }
