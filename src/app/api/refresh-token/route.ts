@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET!);
+    // const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET!);
     const user = await User.findOne({ refreshToken });
 
     if(!user) {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({accessToken});
-  } catch (error) {
+  } catch {
     return NextResponse.json({message: "Invalid token"}, {status: 403});
 
   }
