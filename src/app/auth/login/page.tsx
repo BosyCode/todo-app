@@ -25,14 +25,13 @@ export default function LoginPage() {
 
   return (
     <div className={styles.loginContainer}>
-      <div className={styles.loginBox}>
-        <h1 className={styles.title}>Logowanie</h1>
-        <form className={styles.form}>
-          <input type="text" placeholder="Nazwa użytkownika" className={styles.input} />
-          <input type="password" placeholder="Hasło" className={styles.input} />
-          <button type="submit" className={styles.button}>Zaloguj</button>
-        </form>
-      </div>
+      <h2>Logowanie</h2>
+      <form onSubmit={handleSubmit} className={styles.loginBox}>
+        {error && <p className={styles.error}></p>}
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <button type="submit">Zaloguj</button>
+      </form>
     </div>
   )
 }
