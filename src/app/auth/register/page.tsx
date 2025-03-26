@@ -1,5 +1,7 @@
-"use client"
+"use client";
 
-export default function Register() {
-  return <div></div>
-}
+import Register from '@/components/templates/Register/Register'
+
+const RegisterPage = () => <Register />
+
+export default RegisterPage;
