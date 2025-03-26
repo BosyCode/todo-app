@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
-import styles from '../../../components/templates/Register/Register.module.scss'
+import React from 'react'
+import styles from './Register.module.scss'
 import { useRouter } from 'next/navigation'
 import { InputFormik } from '@/components/base/Input/Input'
 import { Form, FormikProvider, useFormik } from 'formik'
 import axios from 'axios'
+import { Button } from '@/components/base/Button/Button'
 
 const Register = () => {
   const router = useRouter()
@@ -35,7 +36,7 @@ const Register = () => {
           <InputFormik type="email" name="email" placeholder="E-mail" required />
           <InputFormik type="password" name="password" placeholder="Hasło" required />
           <InputFormik type="password" name="passwordConfirm" placeholder="Powtórz hasło" required />
-          <button type="submit">Zarejestruj się</button>
+          <Button text="Zarejestruj się" type='submit'  />
         </Form>
       </FormikProvider>
     </div>

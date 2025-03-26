@@ -1,6 +1,7 @@
 import { FC, InputHTMLAttributes } from 'react';
 import styles from './Input.module.scss';
 import { useField } from 'formik'
+import classNames from 'classnames'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   className?: string;
@@ -17,7 +18,7 @@ export interface FormikInputProps extends Omit<InputProps, 'value' | 'onChange' 
 export const Input: FC<InputProps> = ({className, state, label, errorMessage, required, ...rest}) => {
   return (
     <div>
-      <input {...rest} required={required} className={className} />
+      <input {...rest} required={required} className={classNames(styles.input, className)} />
       {label && (
         <label htmlFor={rest.name} className={styles.label}>
           <span>{label}</span>
