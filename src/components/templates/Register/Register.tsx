@@ -17,24 +17,30 @@ const Register = () => {
       username: '',
       email: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
     },
     onSubmit: async (values) => {
       try {
-        await axios.post('/api/register', values).then(res => res.status === 201 && router.push('/auth/login'))
+        await axios
+          .post('/api/register', values)
+          .then((res) => res.status === 201 && router.push('/auth/login'))
       } catch (error) {
         console.log(error)
       }
     },
     validationSchema: Yup.object().shape({
-      username: Yup.string().required("Username is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
-      password: Yup.string().required("Password is required").matches(
-        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_`+{}\[\]:;<>,.?~\-=/\\]{8,}$/,
-        "Password must be at least 8 characters and special characters.",
-      ),
-      passwordConfirm: Yup.string().oneOf([Yup.ref("password")], "Passwords must match").required("Password must match"),
-    })
+      username: Yup.string().required('Username is required'),
+      email: Yup.string().email('Invalid email').required('Email is required'),
+      password: Yup.string()
+        .required('Password is required')
+        .matches(
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_`+{}\[\]:;<>,.?~\-=/\\]{8,}$/,
+          'Password must be at least 8 characters and special characters.',
+        ),
+      passwordConfirm: Yup.string()
+        .oneOf([Yup.ref('password')], 'Passwords must match')
+        .required('Password must match'),
+    }),
   })
 
   return (
@@ -42,11 +48,32 @@ const Register = () => {
       <h2>Rejestracja</h2>
       <FormikProvider value={registerFormik}>
         <Form>
-          <InputFormik type="text" name="username" placeholder="Username" required />
-          <InputFormik type="email" name="email" placeholder="E-mail" required />
-          <InputFormik type="password" name="password" placeholder="Hasło" required />
-          <InputFormik type="password" name="passwordConfirm" placeholder="Powtórz hasło" required />
-          <Button text="Zarejestruj się" type='submit'  />
+          <InputFormik
+            type="text"
+            name="username"
+            placeholder="Username"
+            label="Nazwa użytkownika"
+            required
+          />
+          <InputFormik
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            required
+          />
+          <InputFormik
+            type="password"
+            name="password"
+            placeholder="Hasło"
+            required
+          />
+          <InputFormik
+            type="password"
+            name="passwordConfirm"
+            placeholder="Powtórz hasło"
+            required
+          />
+          <Button text="Zarejestruj się" type="submit" />
         </Form>
       </FormikProvider>
     </div>

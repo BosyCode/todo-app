@@ -1,0 +1,23 @@
+// WEIGHT
+
+@mixin weight($weight) {
+  font-weight: $weight;
+}
+
+// FONT SIZE
+
+@mixin size($size) {
+  font-size: $size;
+}
+
+// COLOR
+
+@mixin color($color) {
+  color: $color;
+}
+
+// FAMILY
+
+@mixin family($family) {
+  font-family: $family;
+}
