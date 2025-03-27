@@ -7,6 +7,7 @@ import { InputFormik } from '@/components/base/Input/Input'
 import { Form, FormikProvider, useFormik } from 'formik'
 import axios from 'axios'
 import { Button } from '@/components/base/Button/Button'
+import * as Yup from 'yup'
 
 const Register = () => {
   const router = useRouter()
@@ -24,7 +25,16 @@ const Register = () => {
       } catch (error) {
         console.log(error)
       }
-    }
+    },
+    validationSchema: Yup.object().shape({
+      username: Yup.string().required("Username is required"),
+      email: Yup.string().email("Invalid email").required("Email is required"),
+      password: Yup.string().required("Password is required").matches(
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_`+{}\[\]:;<>,.?~\-=/\\]{8,}$/,
+        "Password must be at least 8 characters and special characters.",
+      ),
+      passwordConfirm: Yup.string().oneOf([Yup.ref("password")], "Passwords must match").required("Password must match"),
+    })
   })
 
   return (
