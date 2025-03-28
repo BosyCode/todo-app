@@ -1,0 +1,35 @@
+.inputContainer {
+  position: relative;
+  padding: 10px 0;
+  width: 100%;
+}
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  background: #e0e5ec;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+  inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+  outline: none;
+  transition: 0.3s;
+  font-family: "Poppins", sans-serif;
+  color: var(--accent);
+
+  &:focus {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.15),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  }
+}
+
+.label {
+  margin-left: 10px;
+}
+
+.error {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  margin-left: 10px;
+}
