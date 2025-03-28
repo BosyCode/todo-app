@@ -27,12 +27,7 @@ export const Input: FC<InputProps> = ({
   ...rest
 }) => {
   return (
-    <div>
-      <input
-        {...rest}
-        required={required}
-        className={classNames(styles.input, className)}
-      />
+    <div className={styles.inputContainer}>
       {label && (
         <label htmlFor={rest.name} className={styles.label}>
           <Text
@@ -45,7 +40,22 @@ export const Input: FC<InputProps> = ({
           />
         </label>
       )}
-      {errorMessage && <p>{errorMessage}</p>}
+      <input
+        {...rest}
+        required={required}
+        className={classNames(styles.input, className)}
+      />
+
+      {errorMessage && (
+        <Text
+          tag="span"
+          text={errorMessage}
+          color="danger"
+          fontSize="10"
+          className={styles.error}
+          fontFamily="poppins"
+        />
+      )}
     </div>
   )
 }

@@ -1,5 +1,4 @@
 .button {
-  width: 100%;
   padding: 12px;
   font-size: 16px;
   font-weight: bold;
@@ -8,7 +7,8 @@
   background: #e0e5ec;
   box-shadow: 5px 5px 10px #babecc, -5px -5px 10px #ffffff;
   cursor: pointer;
-  transition: 0.3s;
+  color: var(--accent);
+
   &:active {
     box-shadow: inset 5px 5px 10px #babecc, inset -5px -5px 10px #ffffff;
   }

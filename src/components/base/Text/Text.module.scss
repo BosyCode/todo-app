@@ -48,7 +48,10 @@
   }
 
   &-20 {
-    @include size(2rem);
+    @include size(1.4rem);
+    @include media-from(md) {
+      @include size(2rem);
+    }
   }
 
   &-24 {

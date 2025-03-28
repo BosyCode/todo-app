@@ -1,3 +1,11 @@
 .registerContainer {
-  max-width: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+}
+
+.button {
+  margin-top: 20px;
 }

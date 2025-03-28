@@ -8,6 +8,7 @@ import { Form, FormikProvider, useFormik } from 'formik'
 import axios from 'axios'
 import { Button } from '@/components/base/Button/Button'
 import * as Yup from 'yup'
+import { Text } from '@/components/base/Text/Text'
 
 const Register = () => {
   const router = useRouter()
@@ -29,51 +30,52 @@ const Register = () => {
       }
     },
     validationSchema: Yup.object().shape({
-      username: Yup.string().required('Username is required'),
-      email: Yup.string().email('Invalid email').required('Email is required'),
+      username: Yup.string().required('Nazwa użytkownika jest wymagana'),
+      email: Yup.string()
+        .email('Nieprawidłowy format e-mail')
+        .required('E-mail jest wymagany'),
       password: Yup.string()
-        .required('Password is required')
+        .required('Hasło jest wymagane')
         .matches(
           /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_`+{}\[\]:;<>,.?~\-=/\\]{8,}$/,
-          'Password must be at least 8 characters and special characters.',
+          'Hasło musi składać się z 8 znaków, jednej wielkiej litery, cyfry i specjalnego znaku.',
         ),
       passwordConfirm: Yup.string()
-        .oneOf([Yup.ref('password')], 'Passwords must match')
-        .required('Password must match'),
+        .oneOf([Yup.ref('password')], 'Hasło nie jest takie samo')
+        .required('Musisz powtórzyć swoje hasło'),
     }),
   })
 
   return (
     <div className={styles.registerContainer}>
-      <h2>Rejestracja</h2>
+      <Text
+        tag="h2"
+        text="Rejestracja"
+        fontSize="32"
+        color="accent"
+        fontFamily="poppins"
+      />
       <FormikProvider value={registerFormik}>
         <Form>
           <InputFormik
             type="text"
             name="username"
-            placeholder="Username"
             label="Nazwa użytkownika"
             required
           />
-          <InputFormik
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            required
-          />
-          <InputFormik
-            type="password"
-            name="password"
-            placeholder="Hasło"
-            required
-          />
+          <InputFormik type="email" name="email" label="Email" required />
+          <InputFormik type="password" name="password" label="Hasło" required />
           <InputFormik
             type="password"
             name="passwordConfirm"
-            placeholder="Powtórz hasło"
+            label="Powtórz hasło"
             required
           />
-          <Button text="Zarejestruj się" type="submit" />
+          <Button
+            text="Zarejestruj się"
+            type="submit"
+            style={{ margin: '15px 0' }}
+          />
         </Form>
       </FormikProvider>
     </div>
